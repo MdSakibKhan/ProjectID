@@ -28,10 +28,10 @@ const PersonalInformation = () => {
             <div className="grid-container">
                 <div className="row">
                     <div className="col-sm-8">
-                        <input className="form-control d-block" type="text" name = 'first_name' placeholder="First Name" title={'Letters Only'} pattern="[A-Za-z]+" maxLength={100}   required></input>
+                        <input className="form-control d-block" type="text" name = 'first_name' placeholder="First Name" title={'Letters Only'} pattern="[A-Za-z\s]+" maxLength={100}   required></input>
                     </div>
                     <div className="col-sm-4">
-                        <input className="form-control  d-block " type="text" name = 'last_name' placeholder="Last Name" title={'Letters Only'} pattern="[A-Za-z]+" maxLength={100} required></input>
+                        <input className="form-control  d-block " type="text" name = 'last_name' placeholder="Last Name" title={'Letters Only'} pattern="[A-Za-z\s]+" maxLength={100} required></input>
                     </div>
                 </div>
             </div>
@@ -43,10 +43,10 @@ const PersonalInformation = () => {
             <div className="grid-container">
                 <div className="row">
                     <div className="col-sm-8">
-                        <input className="form-control  d-block mt-3" type="text" name = 'fathers_name'  placeholder= "Fathers First Name " title={'Letters Only'} pattern="[A-Za-z]+" ></input>
+                        <input className="form-control  d-block mt-3" type="text" name = 'fathers_name'  placeholder= "Fathers First Name " title={'Letters Only'} pattern="[A-Za-z\s]+" ></input>
                     </div>
                     <div className="col-sm-4">
-                        <input className="form-control  d-block mt-3" type="text" name = 'fathers_last_name'  placeholder= "Fathers Last Name " title={'Letters Only'} pattern="[A-Za-z]+"  ></input>
+                        <input className="form-control  d-block mt-3" type="text" name = 'fathers_last_name'  placeholder= "Fathers Last Name " title={'Letters Only'} pattern="[A-Za-z\s]+"  ></input>
                     </div>
                 </div>
             </div>
@@ -54,16 +54,16 @@ const PersonalInformation = () => {
             <div className="grid-container">
                 <div className="row">
                     <div className="col-sm-8">
-                        <input className="form-control  d-block mt-3" type="text" name = 'mothers_name'  placeholder= "Mothers First Name " title={'Letters Only'} pattern="[A-Za-z]+"  ></input>
+                        <input className="form-control  d-block mt-3" type="text" name = 'mothers_name'  placeholder= "Mothers First Name " title={'Letters Only'} pattern="[A-Za-z\s]+"  ></input>
                     </div>
                     <div className="col-sm-4">
-                        <input className="form-control  d-block mt-3" type="text" name = 'mothers_last_name'  placeholder= "Mothers Last Name " title={'Letters Only'} pattern="[A-Za-z]+"  ></input>
+                        <input className="form-control  d-block mt-3" type="text" name = 'mothers_last_name'  placeholder= "Mothers Last Name " title={'Letters Only'} pattern="[A-Za-z\s]+"  ></input>
                     </div>
                 </div>
             </div>
 
             <input className="form-control  d-block mt-3" type="text" name = 'national_id'   placeholder=  "National ID " title={'Number Only'} pattern="[0-9]+"  required ></input>
-            <input className="form-control  d-block mt-3" type="text" name = 'identification_mark' placeholder="Identification Mark" title={'Letters Only'} pattern="[A-Za-z]+" required></input>
+            <input className="form-control  d-block mt-3" type="text" name = 'identification_mark' placeholder="Identification Mark" title={'Letters Only'} pattern="[A-Za-z\s]+" required></input>
 
             <div className={'row'}>
                 <div className={'col-sm-6'}>
