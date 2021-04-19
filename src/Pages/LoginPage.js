@@ -4,10 +4,14 @@ import './loginPage.css'
 import IdCardTemplate from '../Images/IdCardTemplate.jpg'
 import {useDispatch} from "react-redux";
 import {loggedIn, loggedOut} from "../actions";
+import {useHistory} from "react-router-dom";
+
+
 const LoginPage = () => {
     let dispatch = useDispatch()
+    const history = useHistory()
     const loginHangler = (event)=>{
-        event.preventDefault();
+        //event.preventDefault();
         let email = event.target.email.value;
         let password = event.target.password.value;
         //console.log(email)
@@ -15,11 +19,17 @@ const LoginPage = () => {
         //Check from API
         if (email == "hrk.sakib@gmail.com" && password == "1234"){
             dispatch(loggedIn())
+            history.push("/home")
+
         }
         else if (email == "admin@gmail.com" && password == "admin"){
             dispatch(loggedIn())
+            history.push("/home")
         }
-        else dispatch(loggedOut())
+        else{
+            dispatch(loggedOut())
+            history.push("/")
+        }
     }
     return (
         <div>
@@ -38,7 +48,7 @@ const LoginPage = () => {
                                     <label className="form-label text-left d-block font-weight-bold">Password</label>
                                     <input type="password" className="form-control" id="exampleInputPassword1" name = 'password'></input>
                                 </div>
-                                <button type="submit" className="btn btn-primary w-50 mt-4"><a className={'text-light w-100'} href={'/home'}>Log In</a></button>
+                                <button type="submit" className="btn btn-primary w-50 mt-4">Log In</button>
                             </form>
                         </div>
                     </div>
