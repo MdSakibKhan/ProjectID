@@ -19,10 +19,10 @@ const App=()=>{
         <Router>
             <Switch>
                 <Route path = "/" exact>
-                    {!isLogged? <LoginPage></LoginPage>:null}
+                    <LoginPage></LoginPage>
                 </Route>
                 <Route path = "/home" exact>
-                    {isLogged? <LoggedInPage></LoggedInPage> :<h1>Please Log In</h1>}
+                    <LoggedInPage></LoggedInPage>
                 </Route>
             </Switch>
         </Router>
