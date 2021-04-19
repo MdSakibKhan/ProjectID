@@ -63,7 +63,7 @@ export default function Regbtn(props) {
                 }}
             >
                 <Typography className={classes.typography}>
-                    <h1 className={'text-center display-4 text-dark'}>Information</h1>
+                    <h2 className={'text-left text-dark'}>Information</h2>
                     <DataList></DataList>
                     {canReg? <Button className={'btn bg-success text-light btn-lg w-100 font-weight-bold'} onClick={props.clicked}>Register</Button> :null}
                 </Typography>

@@ -19,7 +19,7 @@ const DataList = () => {
 
 
     return (
-        <div className={'w-100'}>
+        <div>
             <hr/>
             <div className={'font-weight-bold text-info'}>First Name :</div> {personalInformation[0]}<hr/>
             <div className={'font-weight-bold text-info'}>Last Name :</div> {personalInformation[1]}<hr/>

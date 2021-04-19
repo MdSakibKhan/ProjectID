@@ -1,0 +1,10 @@
+#loggedInRow{
+    height: 88vh;
+}
+#loggedInLeft{
+    overflow-y: scroll;
+
+}
+#loggedInRight{
+    height: 100%;
+}
