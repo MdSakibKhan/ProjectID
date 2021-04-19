@@ -1,0 +1,6 @@
+#loginPage{
+    margin-top: 10%;
+    width: 700px;
+    background: rgb(18,48,69);
+    background: linear-gradient(90deg, rgb(236, 238, 241) 0%, rgb(232, 237, 243) 32%, rgb(232, 237, 243) 70%, rgb(236, 238, 241) 100%);
+}

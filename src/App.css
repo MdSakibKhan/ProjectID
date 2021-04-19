@@ -1,0 +1,64 @@
+#form_items{
+  border-left: 0;
+  border-right: 0;
+  border-bottom: 0;
+  border-style: inset;
+  background-color: #d9dbde;
+}
+
+#btn1, #btn2{
+  background-color: #d9dbde;
+  color: #282c34;
+  width: 100%;
+  height: 50px;
+  margin: 1%;
+  font-weight: bold;
+}
+#btn1:hover, #btn2:hover{
+  background-color: #282c34;
+  color: #d9dbde;
+}
+
+#showdata{
+  overflow-y: scroll;
+  height: 62vh;
+}
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
