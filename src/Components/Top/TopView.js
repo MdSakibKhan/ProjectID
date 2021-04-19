@@ -1,12 +1,13 @@
 import React from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {useHistory} from "react-router-dom"
+import {useHistory} from "react-router-dom";
 import {loggedOut} from "../../actions";
 const TopView = () => {
     let history = useHistory();
     let dispatch = useDispatch();
     let isLogged = useSelector(state => state.isLogged);
-    const logOutButtonHandler = ()=>{
+
+    let logOutButtonHandler = ()=>{
         dispatch(loggedOut());
         history.push('/')
     }

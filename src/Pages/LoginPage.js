@@ -1,11 +1,9 @@
 import React from 'react';
-import TopView from "../Components/Top/TopView";
-import './loginPage.css'
 import IdCardTemplate from '../Images/IdCardTemplate.jpg'
 import {useDispatch} from "react-redux";
 import {loggedIn, loggedOut} from "../actions";
 import {useHistory} from "react-router-dom";
-
+import './loginPage.css'
 
 const LoginPage = () => {
     let dispatch = useDispatch()
@@ -33,11 +31,10 @@ const LoginPage = () => {
     }
     return (
         <div>
-            <TopView></TopView>
             <div className={'grid-container'}>
-                <div className={'row'}>
-                    <div className={'col-sm-4 p-0'}>
-                        <div className={'card container'} id = {'loginPage'}>
+                <div className={'row'} id = 'loginPageRow'>
+                    <div className={'col-sm-4 p-0'} id = 'loginPageLeft'>
+                        <div className={'card border container'} id = {'loginForm'}>
                             <div className={'display-4 mt-5 font-italic'}> Welcome </div>
                             <form className={'p-5'} onSubmit={loginHangler}>
                                 <div className="mb-3">
@@ -53,7 +50,7 @@ const LoginPage = () => {
                         </div>
                     </div>
 
-                    <div className={'col-sm-8 p-0'}>
+                    <div className={'col-sm-8 p-0'} id={'loginPageRight'} >
 
                         <img className={'w-100'} src={IdCardTemplate} id = {'logoImage'}></img>
 

@@ -1,4 +1,5 @@
 #loggedInRow{
+    margin: auto;
     height: 88vh;
 }
 #loggedInLeft{
@@ -7,4 +8,10 @@
 }
 #loggedInRight{
     height: 100%;
+}
+#snip{
+    color: #1759a4;
+    margin-top: 10%;
+    height: 150px;
+    width: 150px;
 }

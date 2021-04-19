@@ -1,10 +1,19 @@
-#loginPage{
-    background: rgb(18,48,69);
-    height: 100%;
-    background: linear-gradient(90deg, rgb(236, 238, 241) 0%, rgb(232, 237, 243) 32%, rgb(232, 237, 243) 70%, rgb(236, 238, 241) 100%);
+#loginPageRow{
+    margin: auto;
+    height: 91vh;
 }
-#pageRow{
-    height: 75vh;
+#loginForm{
+    padding: 0%;
+    width: 80%;
+    margin-top: 180px;
+    background-color: #ffffff;
+}
+#loginPageLeft{
+    background-color: #d9dbde;
+    height: 100%;
+}
+#loginPageRight{
+    height: 100%;
 }
 #logoImage{
     height: 100%;

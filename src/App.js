@@ -4,19 +4,19 @@ import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import LoggedInPage from "./Pages/LoggedInPage";
 import LoginPage from "./Pages/LoginPage";
 import {useSelector} from "react-redux";
-
 import {
     BrowserRouter as Router,
     Switch,
     Route,
-    Link
+    Link, Redirect
 } from "react-router-dom";
+import TopView from "./Components/Top/TopView";
 
 const App=()=>{
     let isLogged = useSelector(state => state.isLogged)
     return (
     <div className="App">
-        <Router>
+        <TopView></TopView>
             <Switch>
                 <Route path = "/" exact>
                     {!isLogged?<LoginPage></LoginPage>:<LoggedInPage></LoggedInPage>}
@@ -24,8 +24,8 @@ const App=()=>{
                 <Route path = "/home" exact>
                     {isLogged? <LoggedInPage></LoggedInPage>: <LoginPage></LoginPage>}
                 </Route>
+                <Redirect to="/"></Redirect>
             </Switch>
-        </Router>
     </div>
   );
 }
