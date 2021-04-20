@@ -1,7 +1,7 @@
 import React from 'react';
 import {useDispatch} from "react-redux";
 import {menuClicked} from "../../actions";
-
+import UserIcon from "../../Images/UserIcon.png"
 import './menu.css'
 
 const Menu = () => {
@@ -13,13 +13,17 @@ const Menu = () => {
 
             <div className={'grid-container p-0'} id={'menuSection'}>
                 <div className={'row p-0 mb-3 d-block'} id = "menuSectionTitle">Login Information</div>
-                <div className={'row p-0'}>
-                    <div className={'border'} id = 'loginInfo'>Admin</div>
-                </div>
-                <div className={'row p-0'}>
-                    <div className={'border'}  id = 'loginInfo'>Admin</div>
+                <div className={'row p-2 bg-light'}>
+                    <div className={'col-sm-4'}>
+                        <img className={'w-100 border rounded-circle'} src={UserIcon} id={'userIcon'}></img>
+                    </div>
+                    <div className={'col-sm-8 border-left'}>
+                            <div  id = 'loginInfo'>User Name</div>
+                            <div  id = 'loginInfo'>User Type</div>
+                    </div>
                 </div>
             </div>
+
 
 
 
