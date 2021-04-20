@@ -3,7 +3,9 @@ import {useDispatch, useSelector} from "react-redux";
 import {useHistory} from "react-router-dom";
 import {loggedOut} from "../../actions";
 import {Dropdown} from "react-bootstrap";
+
 const TopView = () => {
+
     let dispatch = useDispatch();
     let isLogged = useSelector(state => state.isLogged);
 

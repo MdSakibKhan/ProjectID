@@ -3,20 +3,9 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link
-} from "react-router-dom";
-
-
-import {createStore} from "redux";
+import { BrowserRouter as Router } from "react-router-dom";
+import store from "./Store/Store";
 import {Provider} from "react-redux";
-
-import allReducers from './reducers'
-
-const store = createStore(allReducers)
 
 ReactDOM.render(
   <React.StrictMode>
