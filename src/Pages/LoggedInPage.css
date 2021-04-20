@@ -3,8 +3,8 @@
     height: 88vh;
 }
 #loggedInLeft{
+    background-color: #295ea2;
     overflow-y: scroll;
-
 }
 #loggedInRight{
     height: 100%;
