@@ -1,0 +1,13 @@
+#top{
+    background-color: #edf2f8;
+}
+#logoutbtn{
+    background-color: #cccfd4;
+    color: #000000;
+    border : 0px solid;
+    border-radius: .25em;
+}
+#logoutbtn:hover{
+    background-color: #0a3848;
+    color: white;
+}

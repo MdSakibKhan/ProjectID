@@ -6,7 +6,6 @@ import {BsFillCaretLeftFill, BsCheck } from "react-icons/bs";
 const OtherInformation = () => {
 
     const dispatch = useDispatch()
-
     const [religion, setReligion] = useState([])
     const [selectedReligion, setSelectedReligion] = useState([])
     const [education, setEducation] = useState([])
@@ -22,7 +21,7 @@ const OtherInformation = () => {
 
     const [style, setstyle] = useState({
         fontSize: 25,
-        color: 'red',
+        color: 'green',
         fontFamily:'fantasy'
     })
 
@@ -63,18 +62,10 @@ const OtherInformation = () => {
 
 
     const submitHandler=(event)=>{
-        if(selectedReligion.length==0 || selectedEducation.length==0 || selectedMaritalStatus.length==0 || selectedBloodGroup.length==0 || selectedProfession.length==0){
-            setWarningMsg("PLEASE PROVIDE ALL INFORMATION");
-            event.preventDefault();
-        }
-        else if (selectedReligion.length!=0 && selectedEducation.length!=0 && selectedMaritalStatus.length!=0 && selectedBloodGroup.length!=0 && selectedProfession.length!=0){
+        if (selectedReligion.length!=0 && selectedEducation.length!=0 && selectedMaritalStatus.length!=0 && selectedBloodGroup.length!=0 && selectedProfession.length!=0){
+
             setWarningMsg("YOU MAY PROCEED");
 
-            setstyle({
-                fontSize: 25,
-                color: 'green',
-                fontFamily:'fantasy'
-            })
             event.preventDefault();
             let religion_id;
             let education_id;
@@ -86,6 +77,7 @@ const OtherInformation = () => {
             education.map(item=>{ if(item.name == selectedEducation) education_id=item.id })
             maritalStatus.map(item=>{ if(item.name == selectedMaritalStatus) marital_id=item.id })
             bloodGroup.map(item=>{ if(item.name == selectedBloodGroup) blood_id=item.id })
+
             occupationList.map(item=>{
                 let prof = selectedProfession.substr(0, selectedProfession.indexOf('|')-1 )
                 let subprof = selectedProfession.substr(selectedProfession.indexOf('|')+2, selectedProfession.length)
@@ -121,55 +113,70 @@ const OtherInformation = () => {
             <div className="grid-container mt-3">
                 <div className="row">
                     <div className="col-sm-6">
-                        <select className="form-control form-control-lg mb-3" name = "religion" onChange={(e)=> setSelectedReligion(e.target.value)} required>
-                            <option>Select Religion</option>
+                        <select className="form-control form-control-sm mb-3" name = "religion" onChange={(e)=> setSelectedReligion(e.target.value)} required>
+                            <option value="" disabled selected hidden>Select Religion</option>
                             {religion.map(item=>{
                                 return <option>{item.name}</option>
                             })}
+                            <option>Others</option>
                         </select>
                     </div>
                     <div className="col-sm-6">
-                        <select className="form-control form-control-lg mb-3" name = "education" onChange={(e)=> setSelectedEducation(e.target.value)} required>
-                            <option>Select Education Level</option>
+                        <select className="form-control form-control-sm mb-3" name = "education" onChange={(e)=> setSelectedEducation(e.target.value)} required>
+                            <option value="" disabled selected hidden>Select Education Level</option>
                             {education.map(item=>{
                                 return <option>{item.name}</option>
                             })}
+                            <option>Others</option>
                         </select>
                     </div>
                     <div className="col-sm-6">
-                        <select className="form-control form-control-lg" name = "marriage" onChange={(e)=> setSelectedMaritalStatus(e.target.value)}  required>
-                            <option>Select Marital Status</option>
+                        <select className="form-control form-control-sm" name = "marriage" onChange={(e)=> setSelectedMaritalStatus(e.target.value)}  required>
+                            <option value="" disabled selected hidden>Select Marital Status</option>
                             {maritalStatus.map(item=>{
                                 return <option>{item.name}</option>
                             })}
+                            <option>Others</option>
                         </select>
                     </div>
                     <div className="col-sm-6">
-                        <select className="form-control form-control-lg" name = "blood_group" onChange={(e)=> setSelectedBloodGroup(e.target.value)}  required>
-                            <option>Select Blood Group</option>
+                        <select className="form-control form-control-sm" name = "blood_group" onChange={(e)=> setSelectedBloodGroup(e.target.value)}  required>
+                            <option value="" disabled selected hidden>Select Blood Group</option>
                             {bloodGroup.map(item=>{
                                 return <option>{item.name}</option>
                             })}
+                            <option>Others</option>
                         </select>
                         </div>
                     </div>
                 <div className={'row mt-3'}>
-                    <div className={'col-sm-12'}>
-                        <select className="form-control form-control-lg" name = "profession" onChange={(e)=>{setSelectedProfession(e.target.value)}} required>
-                            <option>Select Profession</option>
+                    <div className={'col-sm-6'}>
+                        <select className="form-control form-control-sm" name = "profession" onChange={(e)=>{setSelectedProfession(e.target.value)}} required>
+                            <option value="" disabled selected hidden>Select Profession</option>
                             {occupationList.map(item=>{
                                 return <option>{item.name} | {item.subname}</option>
                             })}
+                            <option>Others</option>
+                        </select>
+                    </div>
+
+                    <div className={'col-sm-6'}>
+                        <select className="form-control form-control-sm" name = "profession" onChange={(e)=>{setSelectedProfession(e.target.value)}} required>
+                            <option value="" disabled selected hidden>Select Sub Profession</option>
+                            {occupationList.map(item=>{
+                                return <option>{item.name} | {item.subname}</option>
+                            })}
+                            <option>Others</option>
                         </select>
                     </div>
                 </div>
             </div>
 
 
-            <input className="form-control d-block mt-3" type="text" name = 'nationality' placeholder=" Enter Nationality" required></input>
-            <input className="form-control d-block mt-3" type="text" name = 'TinNumber' placeholder=" Enter TIN / Tax Identification Number" ></input>
-            <input className="form-control d-block mt-3" type="text" name = 'contact_no' placeholder=" Enter contact number" required></input>
-            <input className="form-control d-block mt-3" type="text" name = 'annual_earnings' placeholder=" Enter Your Total earning" required></input>
+            <input className="form-control form-control-sm d-block mt-3" type="text" name = 'nationality' placeholder=" Enter Nationality"  title={'Letters Only'} pattern="[A-Za-z\s]+" required></input>
+            <input className="form-control form-control-sm d-block mt-3" type="text" name = 'TinNumber' placeholder=" Enter TIN / Tax Identification Number" title={'Number Only'} pattern="[0-9]+" ></input>
+            <input className="form-control form-control-sm d-block mt-3" type="text" name = 'contact_no' placeholder=" Enter contact number" title={'Number Only'} pattern="[+()0-9\s]+" required></input>
+            <input className="form-control form-control-sm d-block mt-3" type="text" name = 'annual_earnings' placeholder=" Enter Your Total earning" title={'Number Only'} pattern="[0-9]+" required></input>
 
             <div className={'mt-5'} style={style}>{warningMsg}</div>
 

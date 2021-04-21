@@ -9,11 +9,8 @@ const LoginPage = () => {
     let dispatch = useDispatch()
     const history = useHistory()
     const loginHangler = (event)=>{
-        //event.preventDefault();
         let email = event.target.email.value;
         let password = event.target.password.value;
-        //console.log(email)
-        //console.log(password)
         //Check from API
         if (email == "hrk.sakib@gmail.com" && password == "1234"){
             dispatch(loggedIn())
@@ -35,7 +32,7 @@ const LoginPage = () => {
                 <div className={'row'} id = 'loginPageRow'>
                     <div className={'col-sm-4 p-0'} id = 'loginPageLeft'>
                         <div className={'card border container'} id = {'loginForm'}>
-                            <div className={'display-4 mt-5 font-italic'}> Welcome </div>
+                            <div className={'display-4 mt-5'}> Welcome </div>
                             <form className={'p-5'} onSubmit={loginHangler}>
                                 <div className="mb-3">
                                     <label className="form-label text-left d-block font-weight-bold">Email address</label>

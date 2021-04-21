@@ -1,0 +1,80 @@
+#snipDiv{
+    height: 1000px;
+}
+
+#snip{
+    width: 180px;
+    height: 180px;
+    margin-top: 12%;
+}
+
+.sidebar {
+    margin: 0;
+    padding: 0;
+    width: 200px;
+    background-color: #f1f1f1;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+}
+
+.sidebar button {
+    display: block;
+    color: black;
+    border-right: 3px solid;
+    text-align: left;
+    font-weight:light;
+    padding: 16px;
+    text-decoration: none;
+}
+
+.sidebar a.active {
+    background-color: #090909;
+    color: white;
+}
+
+.sidebar a:hover:not(.active) {
+    background-color: #555;
+    color: white;
+}
+
+div.content {
+    margin-left: 200px;
+    padding: 1px 16px;
+    height: 1000px;
+}
+
+@media screen and (max-width: 700px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+    .sidebar a {float: left;}
+    div.content {margin-left: 0;}
+}
+
+@media screen and (max-width: 400px) {
+    .sidebar a {
+        text-align: center;
+        float: none;
+    }
+}
+
+.btns {
+    margin-bottom: 3px;
+    border: none;
+    outline: none;
+    padding: 10px 16px;
+    background-color: #ffffff;
+    cursor: pointer;
+}
+
+/* Style the active class (and buttons on mouse-over) */
+.btns:hover {
+    background-color: #0a3848;
+    color: white;
+}
+.active{
+    background-color: #b3cdde;
+}

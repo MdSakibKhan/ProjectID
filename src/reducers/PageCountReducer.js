@@ -11,6 +11,8 @@ const PageCountReducer = (state= pagestate, action)=>{
                     return state-1;
                 }
                 else return state
+            case 'INITIAL':
+                return 1;
             default:
                 return state
         }

@@ -28,25 +28,27 @@ const PersonalInformation = () => {
             <div className="grid-container">
                 <div className="row">
                     <div className="col-sm-8">
-                        <input className="form-control d-block" type="text" name = 'first_name' placeholder="First Name" title={'Letters Only'} pattern="[A-Za-z\s]+" maxLength={100}   required></input>
+                        <input className="form-control form-control-sm d-block mt-3" type="text" name = 'first_name' placeholder="First Name" title={'Letters Only'} pattern="[A-Za-z\s]+" maxLength={100}   required></input>
                     </div>
                     <div className="col-sm-4">
-                        <input className="form-control  d-block " type="text" name = 'last_name' placeholder="Last Name" title={'Letters Only'} pattern="[A-Za-z\s]+" maxLength={100} required></input>
+                        <input className="form-control form-control-sm  d-block mt-3 " type="text" name = 'last_name' placeholder="Last Name" title={'Letters Only'} pattern="[A-Za-z\s]+" maxLength={100} required></input>
                     </div>
                 </div>
             </div>
-
-            <div className="h6 text-left ml-1 d-flex pt-2 mt-3 align-items-center"> Choose date of Birth : </div>
-            <input className="form-control  d-block " type="date" name = 'date_of_birth' required></input>
 
 
             <div className="grid-container">
                 <div className="row">
                     <div className="col-sm-8">
-                        <input className="form-control  d-block mt-3" type="text" name = 'fathers_name'  placeholder= "Fathers First Name " title={'Letters Only'} pattern="[A-Za-z\s]+" ></input>
+                        <select className="form-control mt-3 form-control-sm">
+                            <option value="" disabled selected hidden>Select Gender</option>
+                            <option>Male</option>
+                            <option>Female</option>
+                            <option>Others</option>
+                        </select>
                     </div>
                     <div className="col-sm-4">
-                        <input className="form-control  d-block mt-3" type="text" name = 'fathers_last_name'  placeholder= "Fathers Last Name " title={'Letters Only'} pattern="[A-Za-z\s]+"  ></input>
+                        <input placeholder={'Date Of Birth'} className="form-control form-control-sm d-block mt-3" type="text" name = 'date_of_birth' onFocus={(e)=>{e.target.type= 'date'}} required></input>
                     </div>
                 </div>
             </div>
@@ -54,16 +56,38 @@ const PersonalInformation = () => {
             <div className="grid-container">
                 <div className="row">
                     <div className="col-sm-8">
-                        <input className="form-control  d-block mt-3" type="text" name = 'mothers_name'  placeholder= "Mothers First Name " title={'Letters Only'} pattern="[A-Za-z\s]+"  ></input>
+                        <input className="form-control form-control-sm  d-block mt-3" type="text" name = 'fathers_name'  placeholder= "Fathers First Name " title={'Letters Only'} pattern="[A-Za-z\s]+"  required></input>
                     </div>
                     <div className="col-sm-4">
-                        <input className="form-control  d-block mt-3" type="text" name = 'mothers_last_name'  placeholder= "Mothers Last Name " title={'Letters Only'} pattern="[A-Za-z\s]+"  ></input>
+                        <input className="form-control form-control-sm  d-block mt-3" type="text" name = 'fathers_last_name'  placeholder= "Fathers Last Name " title={'Letters Only'} pattern="[A-Za-z\s]+" required ></input>
                     </div>
                 </div>
             </div>
 
-            <input className="form-control  d-block mt-3" type="text" name = 'national_id'   placeholder=  "National ID " title={'Number Only'} pattern="[0-9]+"  required ></input>
-            <input className="form-control  d-block mt-3" type="text" name = 'identification_mark' placeholder="Identification Mark" title={'Letters Only'} pattern="[A-Za-z\s]+" required></input>
+            <div className="grid-container">
+                <div className="row">
+                    <div className="col-sm-8">
+                        <input className="form-control form-control-sm  d-block mt-3" type="text" name = 'mothers_name'  placeholder= "Mothers First Name " title={'Letters Only'} pattern="[A-Za-z\s]+" required ></input>
+                    </div>
+                    <div className="col-sm-4">
+                        <input className="form-control form-control-sm  d-block mt-3" type="text" name = 'mothers_last_name'  placeholder= "Mothers Last Name " title={'Letters Only'} pattern="[A-Za-z\s]+" required ></input>
+                    </div>
+                </div>
+            </div>
+
+            <div className="grid-container">
+                <div className="row">
+                    <div className="col-sm-8">
+                        <input className="form-control form-control-sm  d-block mt-3" type="text" name = 'mothers_name'  placeholder= "Spouse First Name " title={'Letters Only'} pattern="[A-Za-z\s]+" required ></input>
+                    </div>
+                    <div className="col-sm-4">
+                        <input className="form-control form-control-sm  d-block mt-3" type="text" name = 'mothers_last_name'  placeholder= "Spouse Last Name " title={'Letters Only'} pattern="[A-Za-z\s]+" required ></input>
+                    </div>
+                </div>
+            </div>
+
+            <input className="form-control form-control-sm  d-block mt-3" type="text" name = 'national_id'   placeholder=  "National ID " title={'Number Only'} pattern="[0-9]+"  required ></input>
+            <input className="form-control form-control-sm  d-block mt-3" type="text" name = 'identification_mark' placeholder="Identification Mark" title={'Letters Only'} pattern="[A-Za-z\s]+" required></input>
 
             <div className={'row'}>
                 <div className={'col-sm-6'}>

@@ -77,27 +77,30 @@ const PermanentAddress = () => {
             <div className="h3">Permanent Address</div>
             <hr/>
 
-            <select className="form-control form-control-lg mb-3" name = 'permanent_country' onChange={(e)=>{setSelectedCountry(e.target.value)}} required>
-                <option id="None">Select Country</option>
+            <select className="form-control form-control-sm mb-3" name = 'permanent_country' onChange={(e)=>{setSelectedCountry(e.target.value)}} required>
+                <option value="" disabled selected hidden>Select Country</option>
                 {countries.map(country=>{
                     return <option>{country.name}</option>
                 })}
+                <option>Others</option>
             </select>
 
-            <select className="form-control form-control-lg mb-3" name = 'permanent_state' onChange={(e)=>{setSelectedState(e.target.value)}} id='cn' required>
-                <option key="None">Select State</option>
+            <select className="form-control form-control-sm mb-3" name = 'permanent_state' onChange={(e)=>{setSelectedState(e.target.value)}} id='cn' required>
+                <option value="" disabled selected hidden>Select State</option>
                 {states.map(stateItem=>{
                     return <option>{stateItem.name}</option>
                 })}
+                <option>Others</option>
             </select>
 
-            <select className="form-control form-control-lg mb-3" name = 'permanent_city' onChange={(e)=>{setSelectedCity(e.target.value)}} id='cn' required>
-                <option key="None">Select City</option>
+            <select className="form-control form-control-sm mb-3" name = 'permanent_city' onChange={(e)=>{setSelectedCity(e.target.value)}} id='cn' required>
+                <option value="" disabled selected hidden>Select City</option>
                 {cities.map(cityItem=>{
                     return <option>{cityItem.name}</option>
                 })}
+                <option>Others</option>
             </select>
-            <input className="form-control d-block mt-3" type="text" name = 'permanent_postal_code' placeholder="Postal code" required></input>
+            <input className="form-control form-control-sm d-block mt-3" type="text" name = 'permanent_postal_code' placeholder="Postal code" title={'Number Only'} pattern="[0-9]+" required></input>
 
             <div className={'mt-5'} style={
                 {fontSize: 25, color: "red", fontFamily:'fantasy'}

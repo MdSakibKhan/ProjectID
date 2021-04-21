@@ -1,7 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
-import LoggedInPage from "./Pages/LoggedInPage";
 import LoginPage from "./Pages/LoginPage";
 import {useSelector} from "react-redux";
 import {
@@ -10,7 +9,9 @@ import {
     Route,
     Link, Redirect
 } from "react-router-dom";
-import TopView from "./Components/Top/TopView";
+import TopView from "./Components/Header/TopView";
+import Homepage from "./Pages/Homepage";
+import Footer from "./Components/Footer/Footer";
 
 const App=()=>{
     let isLogged = useSelector(state => state.isLogged)
@@ -19,13 +20,14 @@ const App=()=>{
         <TopView></TopView>
             <Switch>
                 <Route path = "/" exact>
-                    {!isLogged?<LoginPage></LoginPage>:<LoggedInPage></LoggedInPage>}
+                    {!isLogged?<LoginPage></LoginPage>:<Homepage></Homepage>}
                 </Route>
                 <Route path = "/home" exact>
-                    {isLogged? <LoggedInPage></LoggedInPage>: <LoginPage></LoginPage>}
+                    {isLogged? <Homepage></Homepage> : <LoginPage></LoginPage>}
                 </Route>
                 <Redirect to="/"></Redirect>
             </Switch>
+        <Footer></Footer>
     </div>
   );
 }

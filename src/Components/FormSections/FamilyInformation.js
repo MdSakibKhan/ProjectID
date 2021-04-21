@@ -22,12 +22,12 @@ const FamilyInformation = () => {
             <div className="h3">Family Information</div>
             <hr/>
 
-            <input className="form-control d-block mt-3" type="text" name = 'total_family_members' placeholder="Amount of total family members" required></input>
-            <input className="form-control d-block mt-3" type="text" name = 'father_count'   placeholder="Amount of father in family" required></input>
-            <input className="form-control d-block mt-3" type="text" name = 'mother_count'   placeholder="Amount of mother in family" required></input>
-            <input className="form-control d-block mt-3" type="text" name = 'son_count'      placeholder="Amount of son in family" required></input>
-            <input className="form-control d-block mt-3" type="text" name = 'daughter_count' placeholder="Amount of daughter in family" required></input>
-            <input className="form-control d-block mt-3" type="text" name = 'others_count' placeholder="Amount of Other members in family" required></input>
+            <input className="form-control form-control-sm d-block mt-3" type="text" name = 'total_family_members' placeholder="Amount of total family members" title={'Number Only'} pattern="[0-9]+" required></input>
+            <input className="form-control form-control-sm d-block mt-3" type="text" name = 'father_count'   placeholder="Amount of father in family" title={'Number Only'} pattern="[0-9]+" required></input>
+            <input className="form-control form-control-sm d-block mt-3" type="text" name = 'mother_count'   placeholder="Amount of mother in family" title={'Number Only'} pattern="[0-9]+" required></input>
+            <input className="form-control form-control-sm d-block mt-3" type="text" name = 'son_count'      placeholder="Amount of son in family" title={'Number Only'} pattern="[0-9]+" required></input>
+            <input className="form-control form-control-sm d-block mt-3" type="text" name = 'daughter_count' placeholder="Amount of daughter in family" title={'Number Only'} pattern="[0-9]+" required></input>
+            <input className="form-control form-control-sm d-block mt-3" type="text" name = 'others_count' placeholder="Amount of Other members in family" title={'Number Only'} pattern="[0-9]+" required></input>
 
             <div className={'row'}>
                 <div className={'col-sm-6'}>

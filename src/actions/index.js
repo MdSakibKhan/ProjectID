@@ -56,7 +56,7 @@ export const loadInformation = (data)=>{
     }
 }
 
-export const menuClicked = (data)=>{
+export const menuSelect = (data)=>{
     return{
         type: 'MENU_CLICKED',
         payload : data
@@ -70,5 +70,10 @@ export const loggedIn = ()=>{
 export const loggedOut = ()=>{
     return{
         type: 'LOGGED_OUT',
+    }
+}
+export const initialPage=()=>{
+    return{
+        type: 'INITIAL'
     }
 }
