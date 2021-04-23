@@ -12,7 +12,6 @@ const PermanentAddress = () => {
     const [countries, setCountries] = useState([]);
     const [states, setStates] = useState([]);
     const [cities, setCities] = useState([]);
-    const [warningMsg, setWarningMsg] = useState("");
 
     useEffect(async () => {
         await axios.get('http://localhost:5000/api/getCountries')
@@ -29,7 +28,6 @@ const PermanentAddress = () => {
         await axios.get( "http://localhost:5000/api/getStates?selectedCountryId="+country_id)
             .then(response=>{
                 let gotStates = [...response.data];
-                console.log(gotStates)
                 setStates(gotStates);
             })
     },[selectedCountry])
@@ -41,7 +39,6 @@ const PermanentAddress = () => {
         await axios.get("http://localhost:5000/api/getCities?selectedStateId="+state_id)
             .then(response=>{
                 let gotCities = [...response.data];
-                console.log(response.data)
                 setCities(gotCities);
             })
     },[selectedState])
@@ -49,29 +46,26 @@ const PermanentAddress = () => {
     const dispatch = useDispatch()
 
     const submitHandler=(event)=>{
+        
+        event.preventDefault();
+        let country_id;
+        let state_id;
+        let city_id;
+        countries.map(item=>{if(item.name==selectedCountry) country_id=item.id})
+        states.map(item=>{ if(item.name==selectedState) state_id=item.id;})
+        cities.map(item=>{if(item.name==selectedCity) city_id=item.id})
 
-        if(selectedCountry.length == 0 || selectedState.length==0 || selectedCity==0){
-            setWarningMsg("PLEASE PROVIDE ALL INFORMATION");
-            event.preventDefault();
-        }
-        else{
-            event.preventDefault();
-            let country_id;
-            let state_id;
-            let city_id;
-            countries.map(item=>{if(item.name==selectedCountry) country_id=item.id})
-            states.map(item=>{ if(item.name==selectedState) state_id=item.id;})
-            cities.map(item=>{if(item.name==selectedCity) city_id=item.id})
-            let permanentaddressinfo = [
-                country_id,
-                state_id,
-                city_id,
-                event.target.permanent_postal_code.value,
-            ]
-            dispatch(insertPermanentAddress(permanentaddressinfo))
-            dispatch(increment())
-        }
+        let permanentaddressinfo = [
+            country_id,
+            state_id,
+            city_id,
+            event.target.permanent_postal_code.value,
+        ]
+        dispatch(insertPermanentAddress(permanentaddressinfo))
+        dispatch(increment())
+
     }
+    
     return (
         <form className="container p-3 mt-4" id = "form_items" onSubmit={submitHandler}>
             <div className="h3">Permanent Address</div>
@@ -101,10 +95,6 @@ const PermanentAddress = () => {
                 <option>Others</option>
             </select>
             <input className="form-control form-control-sm d-block mt-3" type="text" name = 'permanent_postal_code' placeholder="Postal code" title={'Number Only'} pattern="[0-9]+" required></input>
-
-            <div className={'mt-5'} style={
-                {fontSize: 25, color: "red", fontFamily:'fantasy'}
-            }>{warningMsg}</div>
 
             <div className={'row'}>
                 <div className={'col-sm-6'}>

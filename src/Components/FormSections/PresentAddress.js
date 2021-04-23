@@ -13,7 +13,6 @@ const PresentAddress = () => {
     const [countries, setCountries] = useState([]);
     const [states, setStates] = useState([]);
     const [cities, setCities] = useState([]);
-    const [warningMsg, setWarningMsg] = useState("");
 
     useEffect(async () => {
       await axios.get('http://localhost:5000/api/getCountries')
@@ -47,35 +46,30 @@ const PresentAddress = () => {
 
 
     const submitHandler=(event)=>{
-        if(selectedCountry.length == 0 || selectedState.length==0 || selectedCity==0){
-            setWarningMsg("PLEASE PROVIDE ALL INFORMATION");
-            event.preventDefault();
-        }
-        else{
-            event.preventDefault();
-            let country_id;
-            let state_id;
-            let city_id;
-            countries.map(item => {
-                if (item.name == selectedCountry) country_id = item.id
-            })
-            states.map(item => {
-                if (item.name == selectedState) state_id = item.id;
-            })
-            cities.map(item => {
-                if (item.name == selectedCity) city_id = item.id
-            })
 
-            let presentaddressinfo = [
-                country_id,
-                state_id,
-                city_id,
-                event.target.present_postal_code.value,
-            ]
-            console.log(presentaddressinfo)
-            dispatch(insertPresentAddress(presentaddressinfo))
-            dispatch(increment())
-        }
+        event.preventDefault();
+        let country_id;
+        let state_id;
+        let city_id;
+        countries.map(item => {
+            if (item.name == selectedCountry) country_id = item.id
+        })
+        states.map(item => {
+            if (item.name == selectedState) state_id = item.id;
+        })
+        cities.map(item => {
+            if (item.name == selectedCity) city_id = item.id
+        })
+
+        let presentaddressinfo = [
+            country_id,
+            state_id,
+            city_id,
+            event.target.present_postal_code.value,
+        ]
+        dispatch(insertPresentAddress(presentaddressinfo))
+        dispatch(increment())
+        
     }
 
     return (
@@ -108,10 +102,6 @@ const PresentAddress = () => {
             </select>
 
             <input className="form-control form-control-sm d-block mt-3" type="text" name = 'present_postal_code' placeholder="Postal code" title={'Number Only'} pattern="[0-9]+" required></input>
-
-            <div className={'mt-5'} style={
-                {fontSize: 25, color: "red", fontFamily:'fantasy'}
-            }>{warningMsg}</div>
 
             <div className={'row'}>
                 <div className={'col-sm-6'}>

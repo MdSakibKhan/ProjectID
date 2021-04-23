@@ -21,52 +21,19 @@ const Form = () => {
 
     const [insertSuccess,setInsertSuccess] = useState(false)
 
-    const registrationHandler=()=>{
-        console.log(otherInformation[3]);
-        axios.post('http://localhost:5000/api/insert', {
-            //Personal Information
-            firstName : personalInformation[0],
-            lastName : personalInformation[1],
-            dob : personalInformation[2],
-            fathersName : personalInformation[3],
-            mothersName : personalInformation[4],
-            nationalId : personalInformation[5],
-            identificationMark : personalInformation[6],
+    const registrationHandler= async ()=>{
 
-            //family Information
-            totalFamilyMember : familtyInformation[0],
-            fatherCount : familtyInformation[1],
-            motherCount : familtyInformation[2],
-            sonCount : familtyInformation[3],
-            daughterCount : familtyInformation[4],
-            otherscount : familtyInformation[5],
-
-            //Present Address
-            presentCountry_id : presentAddress[0],
-            presentState_id : presentAddress[1],
-            presentCity_id : presentAddress[2],
-            presentPostalCode : presentAddress[3],
-
-            //Permanent Address
-            permanentCountry_id : permanentAddress[0],
-            permanentState_id : permanentAddress[1],
-            permanentCity_id : permanentAddress[2],
-            permanentPostalCode : permanentAddress[3],
-
-            //Others information
-            religion_id : otherInformation[0],
-            education_id : otherInformation[1],
-            maritalStatus_id : otherInformation[2],
-            bloodGroup_id : otherInformation[3],
-            profession_id: otherInformation[4],
-            nationality  : otherInformation[5],
-            tinNumber : otherInformation[6],
-            contactNumber : otherInformation[7],
-            annualEarnings : otherInformation[8]
-
-        }).then((response)=>{
-            setInsertSuccess(true);
-            alert('Data Inserted')
+        await axios.post('http://localhost:5000/api/insert',
+        {
+            personalInformation : personalInformation,
+            familtyInformation : familtyInformation,
+            presentAddress : presentAddress,
+            permanentAddress : permanentAddress,
+            otherInformation : otherInformation
+        }
+        )
+        .then((response)=>{
+            if(response === true) setInsertSuccess(true);
         })
     }
 
@@ -82,6 +49,7 @@ const Form = () => {
                         {pagenumber==5? <OtherInformation />:null}
                     </div>
                 </div>
+                {insertSuccess? <h1>Data Inserted</h1>:null}
                 <Regbtn clicked={registrationHandler}></Regbtn>
             </div>
         </div>

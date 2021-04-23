@@ -1,20 +1,37 @@
-import React, {useState} from 'react';
+import React, {useState,useEffect} from 'react';
 import {useDispatch} from "react-redux";
 import {decrement, increment, insertPersonalInformation} from "../../actions";
 import { BsFillCaretRightFill, BsFillCaretLeftFill } from "react-icons/bs";
+import axios from 'axios';
 
 const PersonalInformation = () => {
+
+    const [genderList, setGenderList] = useState([])
+
     const dispatch = useDispatch()
+
+    useEffect(async () => {
+        await axios.get('http://localhost:5000/api/getGender')
+              .then(response=>{
+                  let gotGender = [...response.data]
+                  setGenderList(gotGender)
+              })
+      },[]);
 
     const submitHandler=(event)=>{
         let personalinfo = [
-            event.target.first_name.value,
-            event.target.last_name.value,
-            event.target.date_of_birth.value,
-            event.target.fathers_name.value,
-            event.target.mothers_name.value,
-            event.target.national_id.value,
-            event.target.identification_mark.value
+            event.target.firstName.value,
+            event.target.lastName.value,
+            event.target.gender.value,
+            event.target.dateOfBirth.value,
+            event.target.fathersFirstName.value,
+            event.target.fathersLastName.value,
+            event.target.mothersFirstName.value,
+            event.target.mothersLastName.value,
+            event.target.spouseFirstName.value,
+            event.target.spouseLastName.value,
+            event.target.nationalId.value,
+            event.target.identificationMark.value
         ]
         dispatch(insertPersonalInformation(personalinfo))
         event.preventDefault();
@@ -28,10 +45,10 @@ const PersonalInformation = () => {
             <div className="grid-container">
                 <div className="row">
                     <div className="col-sm-8">
-                        <input className="form-control form-control-sm d-block mt-3" type="text" name = 'first_name' placeholder="First Name" title={'Letters Only'} pattern="[A-Za-z\s]+" maxLength={100}   required></input>
+                        <input className="form-control form-control-sm d-block mt-3" type="text" name = 'firstName' placeholder="First Name" title={'Letters Only'} pattern="[A-Za-z\s]+" maxLength={100}   required></input>
                     </div>
                     <div className="col-sm-4">
-                        <input className="form-control form-control-sm  d-block mt-3 " type="text" name = 'last_name' placeholder="Last Name" title={'Letters Only'} pattern="[A-Za-z\s]+" maxLength={100} required></input>
+                        <input className="form-control form-control-sm  d-block mt-3 " type="text" name = 'lastName' placeholder="Last Name" title={'Letters Only'} pattern="[A-Za-z\s]+" maxLength={100} required></input>
                     </div>
                 </div>
             </div>
@@ -40,15 +57,16 @@ const PersonalInformation = () => {
             <div className="grid-container">
                 <div className="row">
                     <div className="col-sm-8">
-                        <select className="form-control mt-3 form-control-sm">
+                        <select className="form-control mt-3 form-control-sm" name="gender">
                             <option value="" disabled selected hidden>Select Gender</option>
-                            <option>Male</option>
-                            <option>Female</option>
+                            {genderList.map(item=>{
+                                <option>{item.name}</option>
+                            })}
                             <option>Others</option>
                         </select>
                     </div>
                     <div className="col-sm-4">
-                        <input placeholder={'Date Of Birth'} className="form-control form-control-sm d-block mt-3" type="text" name = 'date_of_birth' onFocus={(e)=>{e.target.type= 'date'}} required></input>
+                        <input placeholder={'Date Of Birth'} className="form-control form-control-sm d-block mt-3" type="text" name = 'dateOfBirth' onFocus={(e)=>{e.target.type= 'date'}} required></input>
                     </div>
                 </div>
             </div>
@@ -56,10 +74,10 @@ const PersonalInformation = () => {
             <div className="grid-container">
                 <div className="row">
                     <div className="col-sm-8">
-                        <input className="form-control form-control-sm  d-block mt-3" type="text" name = 'fathers_name'  placeholder= "Fathers First Name " title={'Letters Only'} pattern="[A-Za-z\s]+"  required></input>
+                        <input className="form-control form-control-sm  d-block mt-3" type="text" name = 'fathersFirstName'  placeholder= "Fathers First Name " title={'Letters Only'} pattern="[A-Za-z\s]+"  required></input>
                     </div>
                     <div className="col-sm-4">
-                        <input className="form-control form-control-sm  d-block mt-3" type="text" name = 'fathers_last_name'  placeholder= "Fathers Last Name " title={'Letters Only'} pattern="[A-Za-z\s]+" required ></input>
+                        <input className="form-control form-control-sm  d-block mt-3" type="text" name = 'fathersLastName'  placeholder= "Fathers Last Name " title={'Letters Only'} pattern="[A-Za-z\s]+" required ></input>
                     </div>
                 </div>
             </div>
@@ -67,10 +85,10 @@ const PersonalInformation = () => {
             <div className="grid-container">
                 <div className="row">
                     <div className="col-sm-8">
-                        <input className="form-control form-control-sm  d-block mt-3" type="text" name = 'mothers_name'  placeholder= "Mothers First Name " title={'Letters Only'} pattern="[A-Za-z\s]+" required ></input>
+                        <input className="form-control form-control-sm  d-block mt-3" type="text" name = 'mothersFirstName'  placeholder= "Mothers First Name " title={'Letters Only'} pattern="[A-Za-z\s]+" required ></input>
                     </div>
                     <div className="col-sm-4">
-                        <input className="form-control form-control-sm  d-block mt-3" type="text" name = 'mothers_last_name'  placeholder= "Mothers Last Name " title={'Letters Only'} pattern="[A-Za-z\s]+" required ></input>
+                        <input className="form-control form-control-sm  d-block mt-3" type="text" name = 'mothersLastName'  placeholder= "Mothers Last Name " title={'Letters Only'} pattern="[A-Za-z\s]+" required ></input>
                     </div>
                 </div>
             </div>
@@ -78,16 +96,16 @@ const PersonalInformation = () => {
             <div className="grid-container">
                 <div className="row">
                     <div className="col-sm-8">
-                        <input className="form-control form-control-sm  d-block mt-3" type="text" name = 'mothers_name'  placeholder= "Spouse First Name " title={'Letters Only'} pattern="[A-Za-z\s]+" required ></input>
+                        <input className="form-control form-control-sm  d-block mt-3" type="text" name = 'spouseFirstName'  placeholder= "Spouse First Name " title={'Letters Only'} pattern="[A-Za-z\s]+" required ></input>
                     </div>
                     <div className="col-sm-4">
-                        <input className="form-control form-control-sm  d-block mt-3" type="text" name = 'mothers_last_name'  placeholder= "Spouse Last Name " title={'Letters Only'} pattern="[A-Za-z\s]+" required ></input>
+                        <input className="form-control form-control-sm  d-block mt-3" type="text" name = 'spouseLastName'  placeholder= "Spouse Last Name " title={'Letters Only'} pattern="[A-Za-z\s]+" required ></input>
                     </div>
                 </div>
             </div>
 
-            <input className="form-control form-control-sm  d-block mt-3" type="text" name = 'national_id'   placeholder=  "National ID " title={'Number Only'} pattern="[0-9]+"  required ></input>
-            <input className="form-control form-control-sm  d-block mt-3" type="text" name = 'identification_mark' placeholder="Identification Mark" title={'Letters Only'} pattern="[A-Za-z\s]+" required></input>
+            <input className="form-control form-control-sm  d-block mt-3" type="text" name = 'nationalId'   placeholder=  "National ID " title={'Number Only'} pattern="[0-9]+"  required ></input>
+            <input className="form-control form-control-sm  d-block mt-3" type="text" name = 'identificationMark' placeholder="Identification Mark" title={'Letters Only'} pattern="[A-Za-z\s]+" required></input>
 
             <div className={'row'}>
                 <div className={'col-sm-6'}>

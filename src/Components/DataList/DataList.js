@@ -23,11 +23,16 @@ const DataList = () => {
             <hr/>
             <div className={'font-weight-bold text-info'}>First Name :</div> {personalInformation[0]}<hr/>
             <div className={'font-weight-bold text-info'}>Last Name :</div> {personalInformation[1]}<hr/>
-            <div className={'font-weight-bold text-info'}>Date Of Birth :</div> {personalInformation[2]}<hr/>
-            <div className={'font-weight-bold text-info'}>Father's Name :</div> {personalInformation[3]}<hr/>
-            <div className={'font-weight-bold text-info'}>Mother's Name :</div> {personalInformation[4]}<hr/>
-            <div className={'font-weight-bold text-info'}>National ID :</div> {personalInformation[5]}<hr/>
-            <div className={'font-weight-bold text-info'}>Identification Mark :</div> {personalInformation[6]}<hr/>
+            <div className={'font-weight-bold text-info'}>Gender :</div> {personalInformation[2]}<hr/>
+            <div className={'font-weight-bold text-info'}>Date Of Birth :</div> {personalInformation[3]}<hr/>
+            <div className={'font-weight-bold text-info'}>Father's First Name :</div> {personalInformation[4]}<hr/>
+            <div className={'font-weight-bold text-info'}>Father's Last Name :</div> {personalInformation[5]}<hr/>
+            <div className={'font-weight-bold text-info'}>Mother's First Name :</div> {personalInformation[6]}<hr/>
+            <div className={'font-weight-bold text-info'}>Mother's Last Name :</div> {personalInformation[7]}<hr/>
+            <div className={'font-weight-bold text-info'}>Spouse First Name :</div> {personalInformation[8]}<hr/>
+            <div className={'font-weight-bold text-info'}>Spouse Last Name :</div> {personalInformation[9]}<hr/>
+            <div className={'font-weight-bold text-info'}>National ID :</div> {personalInformation[10]}<hr/>
+            <div className={'font-weight-bold text-info'}>Identification Mark :</div> {personalInformation[11]}<hr/>
             <div className={'font-weight-bold text-info'}>Total Family Members :</div> {familtyInformation[0]}<hr/>
             <div className={'font-weight-bold text-info'}>Total Father Amount :</div> {familtyInformation[1]}<hr/>
             <div className={'font-weight-bold text-info'}>Total Mother Amount :</div> {familtyInformation[2]}<hr/>

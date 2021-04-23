@@ -14,8 +14,10 @@ const OtherInformation = () => {
     const [selectedBloodGroup, setSelectedBloodGroup] = useState([])
     const [maritalStatus, setMaritalStaus] = useState([])
     const [selectedMaritalStatus, setSelectedMaritalStatus] = useState([])
-    const [occupationList, setOccupationList] = useState([])
+    const [professonList, setProfessionList] = useState([])
     const [selectedProfession, setSelectedProfession] = useState([])
+    const [subProfessonList, setSubProfessionList] = useState([])
+    const [selectedSubProfession, setSelectedSubProfession] = useState([])
 
     const [warningMsg, setWarningMsg] = useState("");
 
@@ -26,39 +28,47 @@ const OtherInformation = () => {
     })
 
     useEffect(async ()=>{
-        axios.get('http://localhost:5000/api/getReligion')
+        await axios.get('http://localhost:5000/api/getReligion')
             .then(response=>{
                 setReligion(response.data)
             })
     },[])
 
     useEffect(async ()=>{
-        axios.get('http://localhost:5000/api/getEducation')
+        await axios.get('http://localhost:5000/api/getEducation')
             .then(response=>{
                 setEducation(response.data)
             })
     },[])
 
     useEffect(async ()=>{
-        axios.get('http://localhost:5000/api/getMaritalStaus')
+        await axios.get('http://localhost:5000/api/getMaritalStaus')
             .then(response=>{
                 setMaritalStaus(response.data)
             })
     },[])
 
     useEffect(async ()=>{
-        axios.get('http://localhost:5000/api/getBloodGroup')
+        await axios.get('http://localhost:5000/api/getBloodGroup')
             .then(response=>{
                 setBloodGroup(response.data)
             })
     },[])
 
     useEffect(async ()=>{
-        axios.get('http://localhost:5000/api/getOccupationList')
+        await axios.get('http://localhost:5000/api/getProfessionList')
             .then(response=>{
-                setOccupationList(response.data)
+                setProfessionList(response.data)
             })
     },[])
+    useEffect(async ()=>{
+        let professionId;
+        professonList.map(item=>{if(item.name==selectedProfession) professionId=item.id})
+        await axios.get('http://localhost:5000/api/getSubProfessionList?professionId='+professionId)
+            .then(response=>{
+                setSubProfessionList(response.data)
+            })
+    },[selectedProfession])
 
 
     const submitHandler=(event)=>{
@@ -67,37 +77,32 @@ const OtherInformation = () => {
             setWarningMsg("YOU MAY PROCEED");
 
             event.preventDefault();
-            let religion_id;
-            let education_id;
-            let marital_id;
-            let blood_id;
-            let profession_id;
+            let religionId;
+            let educationId;
+            let maritalStatusId;
+            let bloodGroupId;
+            let professionId;
+            let subProfessionId;
 
-            religion.map(item=>{ if(item.name == selectedReligion) religion_id=item.id })
-            education.map(item=>{ if(item.name == selectedEducation) education_id=item.id })
-            maritalStatus.map(item=>{ if(item.name == selectedMaritalStatus) marital_id=item.id })
-            bloodGroup.map(item=>{ if(item.name == selectedBloodGroup) blood_id=item.id })
+            religion.map(item=>{ if(item.name == selectedReligion) religionId=item.id })
+            education.map(item=>{ if(item.name == selectedEducation) educationId=item.id })
+            maritalStatus.map(item=>{ if(item.name == selectedMaritalStatus) maritalStatusId=item.id })
+            bloodGroup.map(item=>{ if(item.name == selectedBloodGroup) bloodGroupId=item.id })
+            professonList.map(item=>{if(item.name ==  selectedProfession) professionId = item.id})
+            subProfessonList.map(item=>{if(item.name ==  selectedSubProfession) subProfessionId = item.id})
 
-            occupationList.map(item=>{
-                let prof = selectedProfession.substr(0, selectedProfession.indexOf('|')-1 )
-                let subprof = selectedProfession.substr(selectedProfession.indexOf('|')+2, selectedProfession.length)
-                console.log(subprof)
-
-                if(item.name == prof && item.subname == subprof){
-                    profession_id = item.id;
-                }
-            })
 
             let Othersinfo = [
-                religion_id,
-                education_id,
-                marital_id,
-                blood_id,
-                profession_id,
+                religionId,
+                educationId,
+                maritalStatusId,
+                bloodGroupId,
+                professionId,
+                subProfessionId,
                 event.target.nationality.value,
-                event.target.TinNumber.value,
-                event.target.contact_no.value,
-                event.target.annual_earnings.value
+                event.target.tinNumber.value,
+                event.target.contactNumber.value,
+                event.target.annualEarnings.value
             ]
             dispatch(insertOtherInformation(Othersinfo))
             dispatch(increment())
@@ -131,7 +136,7 @@ const OtherInformation = () => {
                         </select>
                     </div>
                     <div className="col-sm-6">
-                        <select className="form-control form-control-sm" name = "marriage" onChange={(e)=> setSelectedMaritalStatus(e.target.value)}  required>
+                        <select className="form-control form-control-sm mb-3" name = "marriage" onChange={(e)=> setSelectedMaritalStatus(e.target.value)}  required>
                             <option value="" disabled selected hidden>Select Marital Status</option>
                             {maritalStatus.map(item=>{
                                 return <option>{item.name}</option>
@@ -140,7 +145,7 @@ const OtherInformation = () => {
                         </select>
                     </div>
                     <div className="col-sm-6">
-                        <select className="form-control form-control-sm" name = "blood_group" onChange={(e)=> setSelectedBloodGroup(e.target.value)}  required>
+                        <select className="form-control form-control-sm mb-3" name = "blood_group" onChange={(e)=> setSelectedBloodGroup(e.target.value)}  required>
                             <option value="" disabled selected hidden>Select Blood Group</option>
                             {bloodGroup.map(item=>{
                                 return <option>{item.name}</option>
@@ -149,11 +154,11 @@ const OtherInformation = () => {
                         </select>
                         </div>
                     </div>
-                <div className={'row mt-3'}>
+                <div className={'row'}>
                     <div className={'col-sm-6'}>
-                        <select className="form-control form-control-sm" name = "profession" onChange={(e)=>{setSelectedProfession(e.target.value)}} required>
+                        <select className="form-control form-control-sm mb-3" name = "profession" onChange={(e)=>{setSelectedProfession(e.target.value)}} required>
                             <option value="" disabled selected hidden>Select Profession</option>
-                            {occupationList.map(item=>{
+                            {professonList.map(item=>{
                                 return <option>{item.name} | {item.subname}</option>
                             })}
                             <option>Others</option>
@@ -161,9 +166,9 @@ const OtherInformation = () => {
                     </div>
 
                     <div className={'col-sm-6'}>
-                        <select className="form-control form-control-sm" name = "profession" onChange={(e)=>{setSelectedProfession(e.target.value)}} required>
+                        <select className="form-control form-control-sm mb-3" name = "subProfession" onChange={(e)=>{setSelectedSubProfession(e.target.value)}} required>
                             <option value="" disabled selected hidden>Select Sub Profession</option>
-                            {occupationList.map(item=>{
+                            {subProfessonList.map(item=>{
                                 return <option>{item.name} | {item.subname}</option>
                             })}
                             <option>Others</option>
@@ -173,10 +178,10 @@ const OtherInformation = () => {
             </div>
 
 
-            <input className="form-control form-control-sm d-block mt-3" type="text" name = 'nationality' placeholder=" Enter Nationality"  title={'Letters Only'} pattern="[A-Za-z\s]+" required></input>
-            <input className="form-control form-control-sm d-block mt-3" type="text" name = 'TinNumber' placeholder=" Enter TIN / Tax Identification Number" title={'Number Only'} pattern="[0-9]+" ></input>
-            <input className="form-control form-control-sm d-block mt-3" type="text" name = 'contact_no' placeholder=" Enter contact number" title={'Number Only'} pattern="[+()0-9\s]+" required></input>
-            <input className="form-control form-control-sm d-block mt-3" type="text" name = 'annual_earnings' placeholder=" Enter Your Total earning" title={'Number Only'} pattern="[0-9]+" required></input>
+            <input className="form-control form-control-sm d-block mb-3" type="text" name = 'nationality' placeholder=" Enter Nationality"  title={'Letters Only'} pattern="[A-Za-z\s]+" required></input>
+            <input className="form-control form-control-sm d-block mb-3" type="text" name = 'tinNumber' placeholder=" Enter TIN / Tax Identification Number" title={'Number Only'} pattern="[0-9]+" ></input>
+            <input className="form-control form-control-sm d-block mb-3" type="text" name = 'contactNumber' placeholder=" Enter contact number" title={'Number Only'} pattern="[+()0-9\s]+" required></input>
+            <input className="form-control form-control-sm d-block mb-3" type="text" name = 'annualEarnings' placeholder=" Enter Your Total earning" title={'Number Only'} pattern="[0-9]+" required></input>
 
             <div className={'mt-5'} style={style}>{warningMsg}</div>
 

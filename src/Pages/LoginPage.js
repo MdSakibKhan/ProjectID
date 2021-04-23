@@ -1,5 +1,6 @@
 import React from 'react';
 import IdCardTemplate from '../Images/IdCardTemplate.jpg'
+import IdCardIcon from '../Images/idCardIcon.jpg'
 import {useDispatch} from "react-redux";
 import {loggedIn, loggedOut} from "../actions";
 import {useHistory} from "react-router-dom";
